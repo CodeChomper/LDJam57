@@ -1,9 +1,28 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
+var anim :AnimatedSprite2D = null
+var dir = false
 
+func _ready() -> void:
+	anim = get_node("AnimatedSprite2D")
+	anim.play("Idle")
+
+func _process(delta: float) -> void:
+	if abs(velocity.x) > 0:
+		anim.play("Moving")
+	else:
+		anim.play("Idle")
+	
+	if velocity.x > 0 and dir:
+		anim.flip_h = false
+		dir = false
+	
+	if velocity.x < 0 and !dir:
+		anim.flip_h = true
+		dir = true
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
