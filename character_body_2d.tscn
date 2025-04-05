@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlc0nqo8enc26"]
+
+[ext_resource type="Script" uid="uid://dko06fy6xj7yi" path="res://Scripts/character_body_2d.gd" id="1_ij6vw"]
+[ext_resource type="Texture2D" uid="uid://ig7oxy1m06be" path="res://icon.svg" id="2_ghijl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ph5yk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ghijl")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wneh1"]
+radius = 15.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ij6vw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.14441e-05, -1.14441e-05)
+scale = Vector2(0.242188, 0.242188)
+sprite_frames = SubResource("SpriteFrames_ph5yk")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wneh1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.5
+drag_top_margin = 0.75
+drag_right_margin = 0.5
+drag_bottom_margin = 0.75
