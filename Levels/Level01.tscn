@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://cot3ke4ayw1lw"]
+[gd_scene load_steps=5 format=4 uid="uid://cot3ke4ayw1lw"]
 
 [ext_resource type="TileSet" uid="uid://dryx0csb31258" path="res://TileSets/main_tile_set.tres" id="1_v0mw7"]
 [ext_resource type="PackedScene" uid="uid://dlc0nqo8enc26" path="res://Player/character_body_2d.tscn" id="2_mk8wa"]
 [ext_resource type="PackedScene" uid="uid://qmtu0nobfur1" path="res://LevelObjects/landmine.tscn" id="3_12jfb"]
+[ext_resource type="PackedScene" uid="uid://de45jyj31ug2h" path="res://LevelObjects/Bat.tscn" id="4_mk8wa"]
 
 [node name="Main" type="Node2D"]
 
@@ -22,3 +23,9 @@ position = Vector2(188, 156)
 
 [node name="Landmine2" parent="." instance=ExtResource("3_12jfb")]
 position = Vector2(87, 300)
+
+[node name="Bat" parent="." instance=ExtResource("4_mk8wa")]
+position = Vector2(-27, 160)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("4_mk8wa")]
+position = Vector2(314, 240)

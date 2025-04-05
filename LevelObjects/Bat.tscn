@@ -1,0 +1,138 @@
+[gd_scene load_steps=20 format=3 uid="uid://de45jyj31ug2h"]
+
+[ext_resource type="Texture2D" uid="uid://dcucdn6v6t5g7" path="res://Sprites/Bat_flying_Sprite.png" id="1_dx7ej"]
+[ext_resource type="Texture2D" uid="uid://ct5ww7k0i7ubp" path="res://Sprites/Bat_Idle_Sprite.png" id="1_k2jot"]
+[ext_resource type="Script" uid="uid://blkd4h05gd8sr" path="res://Sprites/bat.gd" id="2_l03oc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7mr4"]
+atlas = ExtResource("1_dx7ej")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfu4j"]
+atlas = ExtResource("1_dx7ej")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7xsi"]
+atlas = ExtResource("1_dx7ej")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trx6s"]
+atlas = ExtResource("1_dx7ej")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l03oc"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx7ej"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ljaw"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxu3v"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxpbo"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krpq3"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pim5a"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x47jg"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjdcm"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok3mw"]
+atlas = ExtResource("1_k2jot")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7mr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7mr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfu4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7xsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trx6s")
+}],
+"loop": true,
+"name": &"Flying",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l03oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx7ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ljaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxu3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxpbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krpq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pim5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x47jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjdcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok3mw")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dx7ej"]
+radius = 21.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("2_l03oc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u7mr4")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.0101828
+
+[node name="Sense" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/Sense"]
+polygon = PackedVector2Array(10, 0, 68, 80, 44, 114, 0, 125, -42, 112, -70, 91, -11, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dx7ej")
+
+[connection signal="body_entered" from="AnimatedSprite2D/Sense" to="." method="_on_sense_body_entered"]
