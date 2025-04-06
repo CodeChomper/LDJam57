@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://20vt1hstxh3n"]
+[gd_scene load_steps=5 format=3 uid="uid://20vt1hstxh3n"]
 
 [ext_resource type="Script" uid="uid://cpmki62f2yqob" path="res://Scripts/heart.gd" id="1_b53vh"]
 [ext_resource type="Texture2D" uid="uid://bl5anqacifbom" path="res://Sprites/Heart_Full.png" id="1_le4nf"]
+[ext_resource type="AudioStream" uid="uid://csj0ax4wgf43u" path="res://Sounds/Pickup.wav" id="3_0iya7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b53vh"]
 radius = 9.0
@@ -20,4 +21,10 @@ scale = Vector2(2, 2)
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_b53vh")
 
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0iya7")
+volume_db = -2.628
+pitch_scale = 2.08
+
 [connection signal="area_entered" from="Sprite2D/HeartHitBox" to="." method="_on_heart_hit_box_area_entered"]
+[connection signal="finished" from="PickupSound" to="." method="_on_pickup_sound_finished"]

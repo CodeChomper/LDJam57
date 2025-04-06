@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cot3ke4ayw1lw"]
+[gd_scene load_steps=10 format=4 uid="uid://cot3ke4ayw1lw"]
 
 [ext_resource type="TileSet" uid="uid://dryx0csb31258" path="res://TileSets/main_tile_set.tres" id="1_v0mw7"]
 [ext_resource type="PackedScene" uid="uid://dlc0nqo8enc26" path="res://Player/character_body_2d.tscn" id="2_mk8wa"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dtcrctvx0njal" path="res://LevelObjects/breakable_dirt.tscn" id="6_bv1p4"]
 [ext_resource type="PackedScene" uid="uid://h4333mcowhp1" path="res://LevelObjects/Worm.tscn" id="7_ruw55"]
 [ext_resource type="PackedScene" uid="uid://20vt1hstxh3n" path="res://LevelObjects/Heart.tscn" id="8_v44il"]
+[ext_resource type="PackedScene" uid="uid://688ie1m3m31d" path="res://LevelObjects/title.tscn" id="9_c8o6p"]
 
 [node name="Main" type="Node2D"]
 
@@ -22,7 +23,7 @@ tile_set = ExtResource("1_v0mw7")
 metadata/_edit_lock_ = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_mk8wa")]
-position = Vector2(112, 5824)
+position = Vector2(48, 64)
 
 [node name="Landmine" parent="." instance=ExtResource("3_12jfb")]
 position = Vector2(176, 160)
@@ -782,9 +783,6 @@ position = Vector2(48, 656)
 [node name="Heart" parent="." instance=ExtResource("8_v44il")]
 position = Vector2(544, 416)
 
-[node name="Heart2" parent="." instance=ExtResource("8_v44il")]
-position = Vector2(160, 128)
-
 [node name="Heart3" parent="." instance=ExtResource("8_v44il")]
 position = Vector2(96, 1088)
 
@@ -868,3 +866,6 @@ position = Vector2(-32, 5200)
 
 [node name="Spider23" parent="." instance=ExtResource("5_12jfb")]
 position = Vector2(48, 5200)
+
+[node name="Title" parent="." instance=ExtResource("9_c8o6p")]
+position = Vector2(48, -32)

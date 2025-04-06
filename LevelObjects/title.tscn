@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://688ie1m3m31d"]
+
+[ext_resource type="Texture2D" uid="uid://dx2xdnvwinrrh" path="res://Sprites/Title.png" id="1_0db45"]
+[ext_resource type="Script" uid="uid://bpskpsqs6rs3v" path="res://Scripts/title.gd" id="1_elnua"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_elnua")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.501961)
+scale = Vector2(3, 3)
+texture = ExtResource("1_0db45")

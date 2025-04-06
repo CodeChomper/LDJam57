@@ -9,7 +9,7 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 var anim :AnimatedSprite2D = null
 var dir = false
-var health = 10
+var health = 5
 const MAX_HEALTH = 10
 
 func _ready() -> void:
@@ -18,6 +18,8 @@ func _ready() -> void:
 	hud.update_health(health)
 
 func _process(delta: float) -> void:
+	if health <= 0:
+		get_tree().reload_current_scene()
 	if abs(velocity.x) > 0:
 		anim.play("Moving")
 	else:

@@ -11,5 +11,11 @@ func _ready() -> void:
 
 func _on_heart_hit_box_area_entered(area: Area2D) -> void:
 	if area.name == "RobotHitBox":
-		queue_free()
+		$PickupSound.play()
+		
+	pass # Replace with function body.
+
+
+func _on_pickup_sound_finished() -> void:
+	queue_free()
 	pass # Replace with function body.
