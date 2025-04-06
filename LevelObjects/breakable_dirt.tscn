@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtcrctvx0njal"]
+
+[ext_resource type="Texture2D" uid="uid://dg766jkph1qrn" path="res://Sprites/Breakable_Dirt.png" id="1_6sakn"]
+[ext_resource type="Script" uid="uid://dcpnhbc5g6ksr" path="res://Scripts/breakable_dirt.gd" id="1_cvafu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvafu"]
+size = Vector2(15.9611, 16.0085)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sakn"]
+size = Vector2(16.008, 16.008)
+
+[node name="BreakableDirt" type="RigidBody2D"]
+mass = 50.0
+linear_damp = 0.373
+script = ExtResource("1_cvafu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -8)
+texture = ExtResource("1_6sakn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8.03201, -7.9953)
+shape = SubResource("RectangleShape2D_cvafu")
+
+[node name="DirtHitBox" type="Area2D" parent="."]
+position = Vector2(8.03201, -7.9953)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirtHitBox"]
+shape = SubResource("RectangleShape2D_6sakn")
+
+[connection signal="area_entered" from="DirtHitBox" to="." method="_on_dirt_hit_box_area_entered"]
+[connection signal="area_exited" from="DirtHitBox" to="." method="_on_dirt_hit_box_area_exited"]

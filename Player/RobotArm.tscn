@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://sdxvqc6jykk5" path="res://Scripts/RobotArm.gd" id="2_vsxvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhypv"]
-size = Vector2(3.80349, 10)
+size = Vector2(3.80349, 12)
 
 [node name="Sprite2D" type="Sprite2D"]
 scale = Vector2(0.78875, 1)
@@ -12,11 +12,9 @@ texture = ExtResource("1_xhypv")
 offset = Vector2(-12.76, 0)
 script = ExtResource("2_vsxvg")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-28.76, 0)
-collision_layer = 6
-collision_mask = 7
+[node name="AxeHitBox" type="Area2D" parent="."]
+position = Vector2(-27.8922, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1.90175, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AxeHitBox"]
+position = Vector2(0.633915, 0)
 shape = SubResource("RectangleShape2D_xhypv")

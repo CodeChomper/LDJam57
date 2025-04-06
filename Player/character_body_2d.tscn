@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlc0nqo8enc26"]
+[gd_scene load_steps=17 format=3 uid="uid://dlc0nqo8enc26"]
 
 [ext_resource type="Script" uid="uid://dko06fy6xj7yi" path="res://Scripts/character_body_2d.gd" id="1_ij6vw"]
 [ext_resource type="Texture2D" uid="uid://d0348i005i86r" path="res://Player/Animations.png" id="2_vvw5e"]
 [ext_resource type="PackedScene" uid="uid://dd66gbw4s4bj5" path="res://Player/RobotArm.tscn" id="3_inwu4"]
+[ext_resource type="PackedScene" uid="uid://c2adcueikxl7s" path="res://hud.tscn" id="4_srlcf"]
+[ext_resource type="AudioStream" uid="uid://b74felt7jn11q" path="res://Sounds/RobotHurt.wav" id="5_nfgwh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_inwu4"]
 atlas = ExtResource("2_vvw5e")
@@ -70,6 +72,13 @@ animations = [{
 radius = 6.0
 height = 40.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_inwu4"]
+radius = 8.0
+height = 38.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inwu4"]
+size = Vector2(4, 11.5)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 5
 script = ExtResource("1_ij6vw")
@@ -96,10 +105,31 @@ position = Vector2(0.271801, 1)
 scale = Vector2(0.704861, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.4, 0.4)
+zoom = Vector2(1.5, 1.5)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.5
 drag_top_margin = 0.75
 drag_right_margin = 0.5
 drag_bottom_margin = 0.75
+
+[node name="RobotHitBox" type="Area2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RobotHitBox"]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_inwu4")
+
+[node name="WheelHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WheelHitBox"]
+position = Vector2(0, 24.25)
+shape = SubResource("RectangleShape2D_inwu4")
+
+[node name="Hud" parent="." instance=ExtResource("4_srlcf")]
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nfgwh")
+
+[connection signal="area_entered" from="RobotHitBox" to="." method="_on_robot_hit_box_area_entered"]
+[connection signal="area_entered" from="WheelHitBox" to="." method="_on_wheel_hit_box_area_entered"]

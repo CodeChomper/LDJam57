@@ -1,4 +1,7 @@
 extends Sprite2D
 
+var spin : bool = false
+
 func _process(delta: float) -> void:
-	rotation += 8 * delta
+	if spin:
+		rotation += 8 * delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://de45jyj31ug2h"]
+[gd_scene load_steps=21 format=3 uid="uid://de45jyj31ug2h"]
 
 [ext_resource type="Texture2D" uid="uid://dcucdn6v6t5g7" path="res://Sprites/Bat_flying_Sprite.png" id="1_dx7ej"]
 [ext_resource type="Texture2D" uid="uid://ct5ww7k0i7ubp" path="res://Sprites/Bat_Idle_Sprite.png" id="1_k2jot"]
@@ -115,24 +115,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ljaw"]
+radius = 20.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx7ej"]
-radius = 21.0
+radius = 12.0416
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("2_l03oc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 16)
 sprite_frames = SubResource("SpriteFrames_u7mr4")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.0101828
 
 [node name="Sense" type="Area2D" parent="AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/Sense"]
 polygon = PackedVector2Array(10, 0, 68, 80, 44, 114, 0, 125, -42, 112, -70, 91, -11, 0)
 
+[node name="BatHitBox" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/BatHitBox"]
+shape = SubResource("CircleShape2D_0ljaw")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_dx7ej")
 
 [connection signal="body_entered" from="AnimatedSprite2D/Sense" to="." method="_on_sense_body_entered"]
+[connection signal="area_entered" from="AnimatedSprite2D/BatHitBox" to="." method="_on_bat_hit_box_area_entered"]

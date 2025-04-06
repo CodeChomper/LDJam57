@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://byyeri0m5oguh"]
+
+[ext_resource type="Texture2D" uid="uid://c1jnpijmsah22" path="res://Sprites/Spider_Sprite.png" id="1_h1ch7"]
+[ext_resource type="Script" uid="uid://dmggl6cwl5duo" path="res://Scripts/spider.gd" id="1_h16ae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h16ae"]
+atlas = ExtResource("1_h1ch7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6fsu"]
+atlas = ExtResource("1_h1ch7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w53yw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h16ae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6fsu")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2saq"]
+radius = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rsddn"]
+radius = 7.0
+height = 28.0
+
+[node name="Spider" type="CharacterBody2D"]
+script = ExtResource("1_h16ae")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w53yw")
+animation = &"Moving"
+autoplay = "Moving"
+frame_progress = 0.469376
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_g2saq")
+
+[node name="SpiderHitBox" type="Area2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderHitBox"]
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rsddn")
+
+[connection signal="area_entered" from="SpiderHitBox" to="." method="_on_spider_hit_box_area_entered"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjnojaul21wvl"]
+
+[ext_resource type="Script" uid="uid://cvqojhxxae3w" path="res://Scripts/exploding_dirt.gd" id="1_8vj3j"]
+[ext_resource type="Texture2D" uid="uid://c70tny2seenri" path="res://Sprites/ExplodingDirt.png" id="2_d1wut"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3is5"]
+atlas = ExtResource("2_d1wut")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8er3"]
+atlas = ExtResource("2_d1wut")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l7hm"]
+atlas = ExtResource("2_d1wut")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyf6p"]
+atlas = ExtResource("2_d1wut")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bivke"]
+atlas = ExtResource("2_d1wut")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpy63"]
+atlas = ExtResource("2_d1wut")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tln7d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3is5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8er3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l7hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyf6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bivke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpy63")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 15.0
+}]
+
+[node name="ExplodingDirt" type="Node2D"]
+script = ExtResource("1_8vj3j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -3)
+sprite_frames = SubResource("SpriteFrames_tln7d")
+animation = &"Explode"
+autoplay = "Explode"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
