@@ -33,8 +33,8 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# Spin arms while not on ground
-	right_arm.spin = not is_on_floor()
-	left_arm.spin = not is_on_floor()
+	right_arm.spin = true #not is_on_floor()
+	left_arm.spin = true #not is_on_floor()
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -56,6 +56,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_robot_hit_box_area_entered(area: Area2D) -> void:
+	if area.name == "HeartHitBox":
+		health += 1
+		if health > MAX_HEALTH:
+			health = MAX_HEALTH
+		hud.update_health(health)
 	if area.name == "BatHitBox" or area.name == "SpiderHitBox":
 		$HurtSound.play()
 		health -= 0.5 

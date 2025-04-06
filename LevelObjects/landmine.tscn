@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://qmtu0nobfur1"]
+[gd_scene load_steps=19 format=3 uid="uid://qmtu0nobfur1"]
 
 [ext_resource type="Texture2D" uid="uid://cmbnw0dya4bgo" path="res://Sprites/LandmineSprite.png" id="1_6wsfk"]
 [ext_resource type="Script" uid="uid://bntdylnc81ds8" path="res://Scripts/landmine.gd" id="1_psaqc"]
+[ext_resource type="AudioStream" uid="uid://cu0aswba7e2n2" path="res://Sounds/ExplodingDirt.wav" id="3_56ebl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psaqc"]
 atlas = ExtResource("1_6wsfk")
@@ -123,6 +124,12 @@ animation = &"Armed"
 position = Vector2(7, -5.5)
 shape = SubResource("RectangleShape2D_eykl4")
 
+[node name="Boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_56ebl")
+volume_db = 24.0
+pitch_scale = 0.65
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="finished" from="Boom" to="." method="_on_audio_stream_player_2d_finished"]

@@ -22,5 +22,10 @@ func _on_spider_hit_box_area_entered(area: Area2D) -> void:
 		invincible = 1
 		return
 	if (area.name == "AxeHitBox" or area.name == "WheelHitBox") and invincible < 0:
-		queue_free()
+		$HurtSound.play()
+	pass # Replace with function body.
+
+
+func _on_hurt_sound_finished() -> void:
+	queue_free()
 	pass # Replace with function body.

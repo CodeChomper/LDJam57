@@ -9,6 +9,7 @@ func _on_body_entered(body: Node2D) -> void:
 	print("Landmine hit")
 	anim.scale = Vector2(4,4)
 	anim.play("Explode")
+	$Boom.play()
 	pass # Replace with function body.
 
 func _on_animated_sprite_2d_animation_finished() -> void:

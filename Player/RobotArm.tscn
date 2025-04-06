@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://sdxvqc6jykk5" path="res://Scripts/RobotArm.gd" id="2_vsxvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhypv"]
-size = Vector2(3.80349, 12)
+size = Vector2(6.33918, 16)
 
 [node name="Sprite2D" type="Sprite2D"]
 scale = Vector2(0.78875, 1)
@@ -16,5 +16,5 @@ script = ExtResource("2_vsxvg")
 position = Vector2(-27.8922, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AxeHitBox"]
-position = Vector2(0.633915, 0)
+position = Vector2(-0.63393, 0)
 shape = SubResource("RectangleShape2D_xhypv")

@@ -1,25 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://byyeri0m5oguh"]
+[gd_scene load_steps=9 format=3 uid="uid://h4333mcowhp1"]
 
-[ext_resource type="Texture2D" uid="uid://c1jnpijmsah22" path="res://Sprites/Spider_Sprite.png" id="1_h1ch7"]
-[ext_resource type="Script" uid="uid://dmggl6cwl5duo" path="res://Scripts/spider.gd" id="1_h16ae"]
-[ext_resource type="AudioStream" uid="uid://dex4tmhern3ul" path="res://Sounds/SpiderHurt.wav" id="3_y6fsu"]
+[ext_resource type="Script" uid="uid://dmggl6cwl5duo" path="res://Scripts/spider.gd" id="1_dght0"]
+[ext_resource type="Texture2D" uid="uid://bb22otyrhmu8f" path="res://Sprites/Worm_Sprite.png" id="2_dght0"]
+[ext_resource type="AudioStream" uid="uid://dex4tmhern3ul" path="res://Sounds/SpiderHurt.wav" id="3_k5h7g"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h16ae"]
-atlas = ExtResource("1_h1ch7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kjjy"]
+atlas = ExtResource("2_dght0")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6fsu"]
-atlas = ExtResource("1_h1ch7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5h7g"]
+atlas = ExtResource("2_dght0")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w53yw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h16ae")
+"texture": SubResource("AtlasTexture_2kjjy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y6fsu")
+"texture": SubResource("AtlasTexture_k5h7g")
 }],
 "loop": true,
 "name": &"Moving",
@@ -31,16 +31,17 @@ radius = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rsddn"]
 radius = 7.0
-height = 28.0
+height = 32.0
 
 [node name="Spider" type="CharacterBody2D"]
-script = ExtResource("1_h16ae")
+script = ExtResource("1_dght0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_w53yw")
 animation = &"Moving"
 autoplay = "Moving"
-frame_progress = 0.469376
+frame_progress = 0.313663
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
@@ -56,7 +57,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rsddn")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_y6fsu")
+stream = ExtResource("3_k5h7g")
 
 [connection signal="area_entered" from="SpiderHitBox" to="." method="_on_spider_hit_box_area_entered"]
 [connection signal="finished" from="HurtSound" to="." method="_on_hurt_sound_finished"]

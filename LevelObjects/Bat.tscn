@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://de45jyj31ug2h"]
+[gd_scene load_steps=23 format=3 uid="uid://de45jyj31ug2h"]
 
 [ext_resource type="Texture2D" uid="uid://dcucdn6v6t5g7" path="res://Sprites/Bat_flying_Sprite.png" id="1_dx7ej"]
 [ext_resource type="Texture2D" uid="uid://ct5ww7k0i7ubp" path="res://Sprites/Bat_Idle_Sprite.png" id="1_k2jot"]
 [ext_resource type="Script" uid="uid://blkd4h05gd8sr" path="res://Sprites/bat.gd" id="2_l03oc"]
+[ext_resource type="AudioStream" uid="uid://ckunjx7kb7dn8" path="res://Sounds/BatTakeOff.wav" id="4_0ljaw"]
+[ext_resource type="AudioStream" uid="uid://ba2sw2gq0gska" path="res://Sounds/BatHurt.wav" id="5_lxu3v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7mr4"]
 atlas = ExtResource("1_dx7ej")
@@ -121,7 +123,7 @@ radius = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx7ej"]
 radius = 12.0416
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Bat" type="CharacterBody2D"]
 script = ExtResource("2_l03oc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -144,5 +146,14 @@ shape = SubResource("CircleShape2D_0ljaw")
 position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_dx7ej")
 
+[node name="TakeOffSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0ljaw")
+max_distance = 341.0
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lxu3v")
+
 [connection signal="body_entered" from="AnimatedSprite2D/Sense" to="." method="_on_sense_body_entered"]
 [connection signal="area_entered" from="AnimatedSprite2D/BatHitBox" to="." method="_on_bat_hit_box_area_entered"]
+[connection signal="finished" from="TakeOffSound" to="." method="_on_take_off_sound_finished"]
+[connection signal="finished" from="HurtSound" to="." method="_on_hurt_sound_finished"]
